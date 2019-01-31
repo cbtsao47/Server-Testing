@@ -27,8 +27,17 @@ describe("server.js", () => {
       expect(res.type).toMatch(/json/i);
     });
     it("should respond with an array", async () => {
-      let expected = [];
-      let res = await request(server).get("/hobbits");
+      let expected = [
+        { id: 1, name: "random name1" },
+        { id: 2, name: "random name2" }
+      ];
+      let res = await request(server)
+        .post("/hobbits")
+        .send({ name: "random name1" });
+      res = await request(server)
+        .post("/hobbits")
+        .send({ name: "random name2" });
+      res = await request(server).get("/hobbits");
       expect(res.body).toEqual(expected);
     });
   });
