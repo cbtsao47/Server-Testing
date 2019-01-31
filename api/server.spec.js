@@ -49,4 +49,13 @@ describe("server.js", () => {
       expect(res.body).toEqual([1]);
     });
   });
+  describe("DELETE/hobbits/:id endpoint", () => {
+    it("should respond with status code 202 accepted", async () => {
+      let res = await request(server)
+        .post("/hobbits")
+        .send({ name: "random name" });
+      res = await request(server).delete("/hobbits/1");
+      expect(res.body).toBe(1);
+    });
+  });
 });
