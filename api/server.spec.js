@@ -49,7 +49,7 @@ describe("server.js", () => {
         .send(body);
       expect(res.status).toBe(201);
     });
-    it("should return the id of the created", async () => {
+    it("should return the id of the item created", async () => {
       let body = { name: "random dwarf" };
       let res = await request(server)
         .post("/hobbits")
@@ -59,7 +59,7 @@ describe("server.js", () => {
     });
   });
   describe("DELETE/hobbits/:id endpoint", () => {
-    it("should respond with status code 202 accepted", async () => {
+    it("should return the number of item deleted", async () => {
       let res = await request(server)
         .post("/hobbits")
         .send({ name: "random name" });
